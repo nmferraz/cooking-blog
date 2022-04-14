@@ -13,6 +13,14 @@ require('dotenv').config();
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static('public'));
 app.use(expressLayouts);
+app.use(fileUpload());
+app.use(cookieParser('CookingBlogSecure'));
+app.use(session({
+    secret: 'CookingBlogScretSession',
+    saveUninitialized: true,
+    resave: true,
+}))
+app.use(flash());
 
 app.set('layout', './layouts/main');
 app.set('view engine', 'ejs');
